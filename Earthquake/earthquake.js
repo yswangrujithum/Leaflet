@@ -34,6 +34,20 @@ d3.json(URL, function(data){
     dataMap(allData); 
 });
 
+var plate_URL = 'https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json';
+var boundary = new L.LayerGroup();
+
+d3.json(plate_URL, function(data){
+    L.geoJSON(data.features, {
+        style: function (geoJsonFeature){
+            return{
+                weight: 3,
+                color: 'orange'
+            }
+        },
+    }).addTo(boundary);
+})
+
 function Color(magnitude){
     // console.log(magnitude)
     if (magnitude > 5){
@@ -80,7 +94,8 @@ function dataMap(){
     };
 
     var overlayMaps = {
-        "Earthquakes": allData
+        "Earthquakes": allData,
+        'Fault Line': boundary
     };
 
     var myMap = L.map('map', {
@@ -88,7 +103,7 @@ function dataMap(){
             37.09, -95.71
         ],
         zoom: 5,
-        layers: [streetmap, allData, lightmap, satellite]
+        layers: [streetmap, allData, lightmap, satellite, boundary]
     });
 
     L.control.layers(baseMaps, overlayMaps, {
