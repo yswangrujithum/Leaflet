@@ -1,5 +1,6 @@
 # Geography of Earthquake and the Plate Tectonics
 ![Earth](Images/earth.jpeg)
+
 This project is focusing on creating a map using Mapbox and Leaflet that will illustrate the location of the earthquake and the plate tectonics. 
 ## Getting Started
 ### The following program is required for your local machine 
